@@ -1,0 +1,143 @@
+.visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  overflow: hidden;
+  perspective: 900px;
+}
+
+/* Gradient orbs */
+.orb1 {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(0,212,255,0.18) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.orb2 {
+  position: absolute;
+  bottom: 15%;
+  left: 15%;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(0,255,140,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 10s ease-in-out infinite;
+  animation-direction: alternate;
+  pointer-events: none;
+}
+
+.orb3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Grid overlay */
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* ── 3D Cube ── */
+
+/* Wrapper: provides perspective context, floats in 3D space */
+.cube {
+  position: absolute;
+  transform-style: preserve-3d;
+  animation: spin 14s linear infinite;
+}
+
+/* Even-indexed cubes get the reverse, multi-axis variant */
+.cube:nth-child(even) {
+  animation-name: spinReverse;
+}
+
+/* Each cube face is positioned absolutely and fills the cube box */
+.cubeFace {
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: visible;
+}
+
+/* Neural network */
+.network {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Floating particles */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: particleRise linear infinite;
+  opacity: 0;
+  box-shadow: 0 0 8px currentColor;
+  filter: blur(0.5px);
+}
+
+/* Energy rings — translateX(-50%) is baked into the keyframe */
+.ring1 {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  border: 1px solid var(--cyan);
+  border-radius: 50%;
+  animation: ringExpand 3.2s ease-out infinite;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ring2 {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  border: 1px solid var(--green);
+  border-radius: 50%;
+  animation: ringExpand 3.2s ease-out infinite;
+  animation-delay: 1.6s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ring3 {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  border: 1px solid var(--violet);
+  border-radius: 50%;
+  animation: ringExpand 3.2s ease-out infinite;
+  animation-delay: 3.2s;
+  opacity: 0;
+  pointer-events: none;
+}

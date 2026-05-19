@@ -1,0 +1,269 @@
+/* ─── Keyframes ─────────────────────────────────────────────────────────── */
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes overlayOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes linePulse {
+  0%   { opacity: 0.3; stroke-dashoffset: 0; }
+  50%  { opacity: 1;   stroke-dashoffset: 300; }
+  100% { opacity: 0.3; stroke-dashoffset: 0; }
+}
+
+@keyframes neuralFlow {
+  0%   { stroke-dashoffset: 700; opacity: 0.5; }
+  50%  { stroke-dashoffset: 0;   opacity: 1; }
+  100% { stroke-dashoffset: -700; opacity: 0.5; }
+}
+
+@keyframes cubeSpin {
+  0%   { transform: rotateX(0deg)   rotateY(0deg);   opacity: 0.7; }
+  50%  { transform: rotateX(180deg) rotateY(180deg); opacity: 1; }
+  100% { transform: rotateX(360deg) rotateY(360deg); opacity: 0.7; }
+}
+
+@keyframes particleFloat {
+  0%   { transform: translate(0, 0) scale(1);   opacity: 0.5; }
+  50%  { transform: translate(var(--tx, 30px), var(--ty, -40px)) scale(1.3); opacity: 1; }
+  100% { transform: translate(0, 0) scale(1);   opacity: 0.5; }
+}
+
+@keyframes ringPulse {
+  0%   { transform: scale(1);  opacity: 0.8; }
+  50%  { transform: scale(12); opacity: 0; }
+  100% { transform: scale(1);  opacity: 0.8; }
+}
+
+@keyframes portalBreath {
+  0%   { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+  50%  { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+}
+
+@keyframes distortPulse {
+  0%   { filter: blur(0px)  brightness(1); }
+  50%  { filter: blur(8px)  brightness(1.2); }
+  100% { filter: blur(0px)  brightness(1); }
+}
+
+@keyframes labelPulse {
+  0%   { opacity: 0.5; letter-spacing: 0.25em; }
+  50%  { opacity: 1;   letter-spacing: 0.35em; }
+  100% { opacity: 0.5; letter-spacing: 0.25em; }
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.3; }
+  40% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ─── Overlay ────────────────────────────────────────────────────────────── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: all;
+  animation: overlayIn 0.25s ease forwards;
+}
+
+.overlay.hiding {
+  animation: overlayOut 0.4s ease forwards;
+  pointer-events: none;
+}
+
+/* ─── Background ─────────────────────────────────────────────────────────── */
+
+.background {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(2, 8, 23, 0.98) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+/* ─── Grid lines ─────────────────────────────────────────────────────────── */
+
+.glowContainer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.linesSvg {
+  width: 100%;
+  height: 100%;
+  stroke: rgb(6, 182, 212);
+  stroke-width: 0.8;
+  filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.9));
+}
+
+.line {
+  stroke-dasharray: 600;
+  animation: linePulse 2.5s ease-in-out infinite;
+}
+
+.neuralPath {
+  fill: none;
+  stroke: rgb(34, 197, 94);
+  stroke-width: 2;
+  stroke-dasharray: 700;
+  filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.8));
+  animation: neuralFlow 3s ease-in-out infinite;
+}
+
+/* ─── Cubes ──────────────────────────────────────────────────────────────── */
+
+.cubesContainer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  perspective: 1400px;
+  filter: drop-shadow(0 0 24px rgba(6, 182, 212, 0.6));
+}
+
+.cube {
+  width: 44px;
+  height: 44px;
+  border: 2px solid rgb(6, 182, 212);
+  background: rgba(6, 182, 212, 0.08);
+  transform-style: preserve-3d;
+  animation: cubeSpin 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ─── Particles ──────────────────────────────────────────────────────────── */
+
+.particlesContainer {
+  position: absolute;
+  inset: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgb(6, 182, 212);
+  border-radius: 50%;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.9);
+  --tx: calc(sin(var(--angle, 0) * 6.28) * 50px);
+  --ty: calc(cos(var(--angle, 0) * 6.28) * -50px);
+  animation: particleFloat 2s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ─── Rings ──────────────────────────────────────────────────────────────── */
+
+.ringsContainer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgb(34, 197, 94);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.7));
+  animation: ringPulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ─── Portal glow ────────────────────────────────────────────────────────── */
+
+.portalGlow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(6, 182, 212, 0.5) 0%,
+    rgba(34, 197, 94, 0.25) 45%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(50px);
+  animation: portalBreath 2s ease-in-out infinite;
+}
+
+/* ─── Distortion ─────────────────────────────────────────────────────────── */
+
+.distortion {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 30%,
+    rgba(0, 0, 0, 0.15) 70%
+  );
+  animation: distortPulse 2s ease-in-out infinite;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Loader label ───────────────────────────────────────────────────────── */
+
+.loaderLabel {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: labelPulse 2s ease-in-out infinite;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.loaderV {
+  color: rgb(6, 182, 212);
+  text-shadow: 0 0 12px rgba(6, 182, 212, 0.8);
+}
+
+.dots {
+  display: inline-flex;
+  gap: 3px;
+  margin-left: 4px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  background: rgb(6, 182, 212);
+  border-radius: 50%;
+  animation: dotBounce 1.2s ease-in-out infinite;
+}
+
+.dot:nth-child(1) { animation-delay: 0s; }
+.dot:nth-child(2) { animation-delay: 0.15s; }
+.dot:nth-child(3) { animation-delay: 0.3s; }

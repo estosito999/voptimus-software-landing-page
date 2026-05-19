@@ -1,0 +1,168 @@
+.section {
+  padding: 120px 0;
+  position: relative;
+  background: radial-gradient(ellipse 70% 40% at 50% 50%, rgba(0,212,255,0.03) 0%, transparent 60%);
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.header .section-subtitle {
+  margin: 0 auto;
+}
+
+/* Timeline grid */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 32px;
+  position: relative;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: fadeInUp 0.6s ease both;
+}
+
+/* Connector between steps (horizontal, same row only) */
+.connector {
+  position: absolute;
+  top: 28px;
+  left: calc(50% + 28px);
+  right: calc(-50% + 28px);
+  height: 2px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.connectorLine {
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+}
+
+/* Hide connectors for steps 3 and 6 (end of rows) */
+.step:nth-child(3) .connector,
+.step:nth-child(6) .connector {
+  display: none;
+}
+
+/* Number badge */
+.numBadge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid;
+  background: rgba(2, 8, 23, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 1;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.step:hover .numBadge {
+  transform: scale(1.1);
+}
+
+.numBadge span {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+/* Content */
+.content {
+  padding: 24px 20px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.step:hover .content {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+}
+
+.stepTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  font-family: var(--font-heading), sans-serif;
+}
+
+.stepDesc {
+  font-size: 0.83rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.stepAccent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.step:hover .stepAccent {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .timeline {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .step:nth-child(3) .connector {
+    display: block;
+  }
+  .step:nth-child(2) .connector,
+  .step:nth-child(4) .connector,
+  .step:nth-child(6) .connector {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+  .connector {
+    display: none !important;
+  }
+  .section {
+    padding: 80px 0;
+  }
+}
