@@ -3,22 +3,10 @@
 import { useState } from 'react'
 import styles from './ContactForm.module.css'
 
-const PROJECT_TYPES = [
-  'Desarrollo Web',
-  'Sistema Empresarial',
-  'Inteligencia Artificial',
-  'Automatización',
-  'Aplicación Móvil',
-  'Consultoría',
-  'Otro',
-]
-
 const BUDGETS = [
-  'Menos de $5,000 USD',
-  '$5,000 – $15,000 USD',
-  '$15,000 – $50,000 USD',
-  'Más de $50,000 USD',
-  'Por definir',
+  '$100 - $300 USD',
+  '$300 - $500 USD',
+  '$500 - $700 USD',
 ]
 
 export default function ContactForm() {
@@ -26,7 +14,6 @@ export default function ContactForm() {
     name: '',
     email: '',
     company: '',
-    projectType: '',
     budget: '',
     message: '',
   })
@@ -153,49 +140,32 @@ export default function ContactForm() {
               </div>
 
               <div className={styles.field}>
-                <label htmlFor="company" className={styles.label}>Empresa</label>
+                <label htmlFor="company" className={styles.label}>¿Qué quieres que te desarrolle u optimice?</label>
                 <input
                   id="company"
                   name="company"
                   type="text"
-                  placeholder="Nombre de tu empresa"
+                  placeholder="Ej: una web, sistema, automatización o mejora de proceso"
                   value={formState.company}
                   onChange={handleChange}
                   className={styles.input}
                 />
               </div>
 
-              <div className={styles.row}>
-                <div className={styles.field}>
-                  <label htmlFor="projectType" className={styles.label}>Tipo de proyecto</label>
-                  <select
-                    id="projectType"
-                    name="projectType"
-                    value={formState.projectType}
-                    onChange={handleChange}
-                    className={styles.select}
-                  >
-                    <option value="">Selecciona una opción</option>
-                    {PROJECT_TYPES.map((t) => (
-                      <option key={t} value={t}>{t}</option>
-                    ))}
-                  </select>
-                </div>
-                <div className={styles.field}>
-                  <label htmlFor="budget" className={styles.label}>Presupuesto aproximado</label>
-                  <select
-                    id="budget"
-                    name="budget"
-                    value={formState.budget}
-                    onChange={handleChange}
-                    className={styles.select}
-                  >
-                    <option value="">Selecciona un rango</option>
-                    {BUDGETS.map((b) => (
-                      <option key={b} value={b}>{b}</option>
-                    ))}
-                  </select>
-                </div>
+              <div className={styles.field}>
+                <label htmlFor="budget" className={styles.label}>Presupuesto aproximado</label>
+                <select
+                  id="budget"
+                  name="budget"
+                  value={formState.budget}
+                  onChange={handleChange}
+                  className={styles.select}
+                >
+                  <option value="">Selecciona un rango</option>
+                  {BUDGETS.map((b) => (
+                    <option key={b} value={b}>{b}</option>
+                  ))}
+                </select>
               </div>
 
               <div className={styles.field}>
