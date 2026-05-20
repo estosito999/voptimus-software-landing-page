@@ -9,15 +9,20 @@ const BUDGETS = [
   '$500 - $700 USD',
 ]
 
+const INITIAL_FORM_STATE = {
+  name: '',
+  email: '',
+  company: '',
+  budget: '',
+  message: '',
+  website: '',
+}
+
 export default function ContactForm() {
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    company: '',
-    budget: '',
-    message: '',
-  })
+  const [formState, setFormState] = useState(INITIAL_FORM_STATE)
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -25,15 +30,39 @@ export default function ContactForm() {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSubmitted(true)
+    setErrorMessage('')
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState),
+      })
+      const result = (await response.json().catch(() => ({}))) as { error?: string }
+
+      if (!response.ok) {
+        throw new Error(result.error || 'No se pudo enviar la solicitud.')
+      }
+
+      setSubmitted(true)
+      setFormState(INITIAL_FORM_STATE)
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'No se pudo enviar la solicitud. Intenta nuevamente.'
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
     <section id="contacto" className={styles.section} aria-labelledby="contact-title">
       <div className={styles.inner}>
-        {/* Left: Info */}
         <div className={styles.info}>
           <span className="section-label">Contacto</span>
           <h2 id="contact-title" className="section-title">
@@ -55,7 +84,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <p className={styles.contactLabel}>Correo</p>
-                <p className={styles.contactValue}>contacto@voptimus.com</p>
+                <p className={styles.contactValue}>duicornista@gmail.com</p>
               </div>
             </div>
 
@@ -88,7 +117,6 @@ export default function ContactForm() {
           </div>
         </div>
 
-        {/* Right: Form */}
         <div className={styles.formWrap}>
           {submitted ? (
             <div className={`glass-card ${styles.success}`} role="alert">
@@ -108,8 +136,20 @@ export default function ContactForm() {
               className={`glass-card ${styles.form}`}
               onSubmit={handleSubmit}
               aria-label="Formulario de contacto"
-              noValidate
             >
+              <div className={styles.hiddenField} aria-hidden="true">
+                <label htmlFor="website">Sitio web</label>
+                <input
+                  id="website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formState.website}
+                  onChange={handleChange}
+                />
+              </div>
+
               <div className={styles.row}>
                 <div className={styles.field}>
                   <label htmlFor="name" className={styles.label}>Nombre *</label>
@@ -174,6 +214,7 @@ export default function ContactForm() {
                   id="message"
                   name="message"
                   required
+                  minLength={10}
                   rows={5}
                   placeholder="Cuéntanos sobre tu proyecto, objetivos y cualquier detalle relevante..."
                   value={formState.message}
@@ -182,11 +223,23 @@ export default function ContactForm() {
                 />
               </div>
 
-              <button type="submit" className={`btn-primary ${styles.submit}`}>
-                Enviar solicitud
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+              {errorMessage && (
+                <p className={styles.error} role="alert">
+                  {errorMessage}
+                </p>
+              )}
+
+              <button
+                type="submit"
+                className={`btn-primary ${styles.submit}`}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Enviando...' : 'Enviar solicitud'}
+                {!isSubmitting && (
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
               </button>
             </form>
           )}

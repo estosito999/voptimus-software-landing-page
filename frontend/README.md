@@ -156,20 +156,24 @@ Los datos principales estan definidos en archivos TypeScript para facilitar su m
 
 ## Variables de entorno
 
-Actualmente el frontend no requiere variables de entorno obligatorias para ejecutarse localmente.
+El formulario de contacto envia correos usando Resend. Para que funcione en local o produccion,
+crea este archivo:
 
-Si mas adelante se integra un backend, proveedor de email, CMS, analitica avanzada o APIs privadas, crea un archivo local:
-
-```bash
+```txt
 frontend/.env.local
 ```
 
-Ejemplo:
+Variables:
 
 ```env
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
-CONTACT_API_URL=https://api.example.com/contact
+RESEND_API_KEY=re_tu_api_key_de_resend
+CONTACT_TO_EMAIL=duicornista@gmail.com
+CONTACT_FROM_EMAIL=Voptimus SOFTWARE <onboarding@resend.dev>
 ```
+
+`CONTACT_FROM_EMAIL` puede usar `onboarding@resend.dev` para pruebas. Para enviar desde un
+correo propio del dominio, verifica el dominio en Resend y cambia ese valor.
 
 No subas archivos `.env*.local` al repositorio. Ya estan ignorados en `.gitignore`.
 
@@ -204,7 +208,7 @@ El proyecto incluye `@vercel/analytics`, por lo que puede aprovechar la analitic
 
 - `next.config.mjs` tiene `typescript.ignoreBuildErrors: true`, por lo que el build de produccion no se detiene por errores de TypeScript. Para un flujo mas estricto, se recomienda agregar un script de typecheck.
 - `images.unoptimized: true` esta activo, util para despliegues donde no se desea usar la optimizacion de imagenes de Next.js.
-- El formulario de contacto actualmente muestra un estado de exito en cliente, pero no envia datos a un backend. Para produccion se debe conectar a una API, Server Action, servicio de email o CRM.
+- El formulario de contacto envia los datos a `app/api/contact/route.ts` y usa Resend para entregar el correo.
 - El script `pnpm lint` existe en `package.json`, pero ESLint no esta instalado/configurado actualmente.
 - El build fue verificado correctamente con `pnpm build`.
 
