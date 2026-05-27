@@ -28,8 +28,8 @@
   margin: 0 auto;
   padding: 0 24px;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.75fr);
-  gap: 72px;
+  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
+  gap: 48px;
   align-items: center;
 }
 
@@ -54,21 +54,15 @@
   -webkit-text-fill-color: transparent;
 }
 
-.lead,
-.text {
+.lead {
   max-width: 700px;
   color: var(--text-dim);
   line-height: 1.75;
 }
 
 .lead {
-  margin: 0 0 18px;
-  font-size: 1.1rem;
-}
-
-.text {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .actions {
@@ -79,10 +73,16 @@
   margin-top: 34px;
 }
 
-.panel {
-  position: relative;
+.opportunities {
   display: grid;
-  gap: 22px;
+  gap: 18px;
+}
+
+.opportunity {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 18px;
   padding: 28px;
   border: 1px solid rgba(0, 212, 255, 0.22);
   border-radius: 8px;
@@ -96,7 +96,11 @@
   animation-delay: 0.12s;
 }
 
-.panel::before {
+.opportunity:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.opportunity::before {
   content: "";
   position: absolute;
   inset: 20px;
@@ -105,29 +109,96 @@
   pointer-events: none;
 }
 
-.commission {
+.developer {
+  border-color: rgba(139, 92, 246, 0.24);
+  background:
+    linear-gradient(135deg, rgba(14, 17, 42, 0.84), rgba(3, 10, 23, 0.72)) padding-box,
+    linear-gradient(135deg, rgba(139, 92, 246, 0.34), rgba(0, 212, 255, 0.24), rgba(0, 255, 140, 0.16)) border-box;
+}
+
+.developer::before {
+  border-color: rgba(139, 92, 246, 0.12);
+}
+
+.opportunityHeader {
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 22px;
+  gap: 12px;
+}
+
+.opportunityIcon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
   border-radius: 8px;
   background: rgba(0, 212, 255, 0.08);
   border: 1px solid rgba(0, 212, 255, 0.18);
   color: var(--cyan);
 }
 
-.commissionValue {
+.developer .opportunityIcon {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(139, 92, 246, 0.22);
+  color: var(--violet);
+}
+
+.opportunityEyebrow {
+  margin: 0;
+  color: var(--text-dim);
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.opportunity h2 {
+  position: relative;
+  z-index: 1;
   margin: 0;
   color: var(--white);
   font-family: var(--font-heading), sans-serif;
-  font-size: clamp(2rem, 5vw, 3.3rem);
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.18;
 }
 
-.commissionLabel {
+.opportunityText {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+.highlight {
+  position: relative;
+  z-index: 1;
+  padding: 18px;
+  border-radius: 8px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.16);
+}
+
+.developer .highlight {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+.highlightValue {
+  margin: 0;
+  color: var(--white);
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.highlightLabel {
   margin: 6px 0 0;
   color: var(--text-dim);
   font-size: 0.92rem;
@@ -159,6 +230,12 @@
   background: rgba(0, 255, 140, 0.1);
   color: var(--green);
   border: 1px solid rgba(0, 255, 140, 0.16);
+}
+
+.developer .benefitIcon {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--violet);
+  border-color: rgba(139, 92, 246, 0.18);
 }
 
 .steps {
@@ -216,8 +293,8 @@
     gap: 44px;
   }
 
-  .panel {
-    max-width: 640px;
+  .opportunities {
+    max-width: 720px;
   }
 
   .steps {
@@ -248,12 +325,11 @@
     justify-content: center;
   }
 
-  .panel {
+  .opportunity {
     padding: 20px;
   }
 
-  .commission {
+  .opportunityHeader {
     align-items: flex-start;
-    padding: 18px;
   }
 }

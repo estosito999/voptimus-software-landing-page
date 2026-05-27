@@ -31,15 +31,15 @@ const FORM_CONFIG = {
     intro:
       'Cuéntanos sobre ti y el tipo de clientes que podrías recomendar. Revisaremos tu solicitud y te responderemos para coordinar el acuerdo de promotor afiliado.',
     formType: 'Promotor afiliado',
-    companyLabel: '¿Qué tipo de clientes o empresas conoces?',
-    companyPlaceholder: 'Ej: restaurantes, tiendas, emprendedores, empresas locales',
-    optionLabel: 'Tipo de oportunidad',
+    companyLabel: 'Numero de contacto',
+    companyPlaceholder: 'Ej: +591 12345678',
+    optionLabel: 'Cual es Fuerte?',
     options: [
-      'Sistema o software a medida',
-      'Página web o landing page',
-      'Automatización de procesos',
-      'Facturación SIAT',
-      'Todavía no estoy seguro',
+      'Diseño Grafico y branding',
+      'Editorial y redacción de contenidos',
+      'Edicion de video y multimedia',
+      'Comunicación y marketing digital',
+      'Todavía no lo sé pero quiero aprender',
     ],
     messageLabel: 'Mensaje para Voptimus *',
     messagePlaceholder:
@@ -60,7 +60,7 @@ const FORM_CONFIG = {
       {
         icon: Users,
         label: 'Ideal para',
-        value: 'Personas con red de contactos',
+        value: 'Personas que quieran ganar recomendando a su red de contactos',
         color: 'var(--cyan)',
         background: 'var(--cyan-dim)',
         border: 'var(--border)',
