@@ -3,7 +3,7 @@
 export const ROUTES = {
   home:        '/',
   servicios:   '/servicios',
-  soluciones:  '/soluciones-ia',
+  soluciones:  '/afiliaciones',
   equipo:       '/equipo',
   proyectos:   '/proyectos',
   nosotros:    '/nosotros',
@@ -15,7 +15,7 @@ export const ROUTES = {
 export const NAV_LINKS = [
   { href: ROUTES.home,       label: 'Inicio' },
   { href: ROUTES.servicios,  label: 'Servicios' },
-  { href: ROUTES.soluciones, label: 'Soluciones IA' },
+  { href: ROUTES.soluciones, label: 'Afiliaciones' },
   { href: ROUTES.equipo,     label: 'Equipo' },
   { href: ROUTES.nosotros,   label: 'Nosotros' },
   { href: ROUTES.contacto,   label: 'Contacto' },

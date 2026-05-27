@@ -143,25 +143,26 @@ export default function AISustainability() {
 
         {/* Right: Content */}
         <div className={styles.content}>
-          <span className="section-label">IA + Medio Ambiente</span>
+          <span className="section-label">Oportunidades + Afiliación</span>
           <h2 id="ai-title" className="section-title">
-            Tecnología inteligente con{' '}
-            <span>visión sostenible</span>
+            Crece con Voptimus y participa en{' '}
+            <span>proyectos inteligentes</span>
           </h2>
           <p className={styles.text}>
-            Creamos soluciones digitales que combinan inteligencia artificial, automatización
-            y eficiencia para reducir procesos manuales, optimizar recursos y mejorar la
-            productividad de las empresas.
+            Únete a un equipo que desarrolla software, automatización e inteligencia
+            artificial para empresas. Si eres anunciador, promotor o afiliado, también
+            puedes generar ingresos con comisiones del 5% al 15% por cada cliente o
+            venta concretada.
           </p>
 
           <div className={styles.features}>
             {[
-              { label: 'Reducción de procesos manuales', color: 'var(--green)' },
-              { label: 'Optimización de recursos con IA', color: 'var(--cyan)' },
-              { label: 'Análisis predictivo en tiempo real', color: 'var(--violet)' },
-              { label: 'Huella digital sostenible', color: 'var(--green)' },
-              { label: 'Automatización inteligente', color: 'var(--cyan)' },
-              { label: 'Decisiones basadas en datos', color: 'var(--violet)' },
+              { label: 'Oportunidades para talento técnico y comercial', color: 'var(--green)' },
+              { label: 'Comisiones del 5% al 15% por resultados', color: 'var(--cyan)' },
+              { label: 'Participación en proyectos de software e IA', color: 'var(--violet)' },
+              { label: 'Crecimiento profesional con acompañamiento', color: 'var(--green)' },
+              { label: 'Modelo flexible para promotores y afiliados', color: 'var(--cyan)' },
+              { label: 'Ingresos por clientes y ventas generadas', color: 'var(--violet)' },
             ].map((f) => (
               <div key={f.label} className={styles.feature}>
                 <div className={styles.featureDot} style={{ background: f.color }} />
@@ -170,9 +171,14 @@ export default function AISustainability() {
             ))}
           </div>
 
-          <TransitionButton href={ROUTES.contacto} className="btn-primary" style={{ marginTop: '16px' }}>
-            Explorar soluciones IA
-          </TransitionButton>
+          <div className={styles.actions}>
+            <TransitionButton href={ROUTES.contacto} className="btn-primary">
+              Quiero unirme al equipo
+            </TransitionButton>
+            <TransitionButton href={ROUTES.contacto} className="btn-secondary">
+              Ser promotor o afiliado
+            </TransitionButton>
+          </div>
         </div>
       </div>
     </section>

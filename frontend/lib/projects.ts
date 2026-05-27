@@ -35,7 +35,7 @@ export const PROJECTS: Project[] = [
   {
     slug: 'app-finanzas-movil',
     title: 'App Finanzas Móvil',
-    category: 'Aplicaciones Móviles',
+    category: 'Sistema de Facturación Computarizada en Línea',
     description: 'Aplicación para gestión de finanzas personales con sincronización bancaria automática.',
     tech: ['React Native', 'Node.js', 'MongoDB', 'Plaid'],
     accentColor: 'cyan',

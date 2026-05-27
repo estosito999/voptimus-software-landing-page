@@ -5,8 +5,33 @@ const PARTICLES = Array.from({ length: 40 }, (_, i) => ({
   id: i,
   x: `${(i * 37 + 11) % 100}%`,
   y: `${(i * 53 + 7) % 100}%`,
+  tx: `${((i * 19) % 70) - 35}px`,
+  ty: `${-20 - ((i * 23) % 60)}px`,
   delay: `${((i * 0.07) % 0.6).toFixed(2)}s`,
 }))
+
+const NETWORK_NODES = [
+  { id: 1, x: '13%', y: '29%', size: '7px', delay: '0s' },
+  { id: 2, x: '26%', y: '64%', size: '5px', delay: '0.18s' },
+  { id: 3, x: '41%', y: '22%', size: '6px', delay: '0.34s' },
+  { id: 4, x: '58%', y: '70%', size: '8px', delay: '0.12s' },
+  { id: 5, x: '72%', y: '36%', size: '5px', delay: '0.46s' },
+  { id: 6, x: '86%', y: '58%', size: '7px', delay: '0.28s' },
+]
+
+const NETWORK_PATHS = [
+  { id: 1, d: 'M 10 32 C 21 23 32 22 44 31 S 68 48 88 38', delay: '0s' },
+  { id: 2, d: 'M 15 66 C 30 54 42 68 56 70 S 76 65 90 56', delay: '0.35s' },
+  { id: 3, d: 'M 28 17 C 36 34 50 42 63 40 S 77 31 88 43', delay: '0.7s' },
+  { id: 4, d: 'M 22 77 C 36 65 45 43 58 39 S 76 40 86 62', delay: '1.05s' },
+]
+
+const TESSERACT_LINKS = [
+  { id: 1, x: '8px', y: '9px', angle: '45deg' },
+  { id: 2, x: '105px', y: '9px', angle: '135deg' },
+  { id: 3, x: '105px', y: '105px', angle: '225deg' },
+  { id: 4, x: '8px', y: '105px', angle: '315deg' },
+]
 
 interface GlobalLoaderProps {
   active?: boolean
@@ -31,29 +56,29 @@ export default function GlobalLoader({
       {...accessibilityProps}
     >
       <div className={styles.background} />
-
-      <div className={styles.glowContainer}>
-        <svg viewBox="0 0 1024 1024" className={styles.linesSvg}>
-          <line x1="0" y1="256" x2="1024" y2="256" className={styles.line} />
-          <line x1="0" y1="512" x2="1024" y2="512" className={styles.line} />
-          <line x1="0" y1="768" x2="1024" y2="768" className={styles.line} />
-          <line x1="256" y1="0" x2="256" y2="1024" className={styles.line} />
-          <line x1="512" y1="0" x2="512" y2="1024" className={styles.line} />
-          <line x1="768" y1="0" x2="768" y2="1024" className={styles.line} />
-          <line x1="0" y1="0" x2="1024" y2="1024" className={styles.line} />
-          <line x1="1024" y1="0" x2="0" y2="1024" className={styles.line} />
-          <path d="M 200 200 Q 400 300 600 200 T 900 200" className={styles.neuralPath} />
-          <path d="M 150 500 Q 300 600 500 500 T 800 500" className={styles.neuralPath} />
-          <path d="M 100 800 Q 350 700 600 800 T 950 800" className={styles.neuralPath} />
+      <div className={styles.grid} />
+      <div className={styles.aurora} />
+      <div className={styles.network} aria-hidden="true">
+        <svg className={styles.networkSvg} viewBox="0 0 100 100" preserveAspectRatio="none">
+          {NETWORK_PATHS.map((path) => (
+            <path
+              key={path.id}
+              d={path.d}
+              className={styles.networkPath}
+              style={{ '--delay': path.delay } as CSSProperties}
+            />
+          ))}
         </svg>
-      </div>
-
-      <div className={styles.cubesContainer}>
-        {[0, 0.1, 0.2, 0.3, 0.4].map((delay) => (
-          <div
-            key={delay}
-            className={styles.cube}
-            style={{ '--delay': `${delay}s` } as CSSProperties}
+        {NETWORK_NODES.map((node) => (
+          <span
+            key={node.id}
+            className={styles.networkNode}
+            style={{
+              '--x': node.x,
+              '--y': node.y,
+              '--size': node.size,
+              '--delay': node.delay,
+            } as CSSProperties}
           />
         ))}
       </div>
@@ -66,32 +91,43 @@ export default function GlobalLoader({
             style={{
               '--x': particle.x,
               '--y': particle.y,
+              '--tx': particle.tx,
+              '--ty': particle.ty,
               '--delay': particle.delay,
             } as CSSProperties}
           />
         ))}
       </div>
 
-      <div className={styles.ringsContainer}>
-        {[0, 0.25, 0.5].map((delay) => (
-          <div
-            key={delay}
-            className={styles.ring}
-            style={{ '--delay': `${delay}s` } as CSSProperties}
-          />
-        ))}
-      </div>
-
-      <div className={styles.portalGlow} />
-      <div className={styles.distortion} />
-
-      <div className={styles.loaderLabel}>
-        <span className={styles.loaderV}>V</span>optimus
-        <span className={styles.dots}>
-          <span className={styles.dot} />
-          <span className={styles.dot} />
-          <span className={styles.dot} />
-        </span>
+      <div className={styles.loaderCard}>
+        <div className={styles.tesseractStage} aria-hidden="true">
+          <div className={styles.tesseract}>
+            <span className={`${styles.tesseractSquare} ${styles.tesseractBack}`} />
+            <span className={`${styles.tesseractSquare} ${styles.tesseractFront}`} />
+            {TESSERACT_LINKS.map((link) => (
+              <span
+                key={link.id}
+                className={styles.tesseractLink}
+                style={{
+                  '--x': link.x,
+                  '--y': link.y,
+                  '--angle': link.angle,
+                } as CSSProperties}
+              />
+            ))}
+            <span className={`${styles.tesseractNode} ${styles.nodeA}`} />
+            <span className={`${styles.tesseractNode} ${styles.nodeB}`} />
+            <span className={`${styles.tesseractNode} ${styles.nodeC}`} />
+            <span className={`${styles.tesseractNode} ${styles.nodeD}`} />
+          </div>
+        </div>
+        <div className={styles.loaderCopy}>
+          <span className={styles.loaderEyebrow}>Voptimus SOFTWARE</span>
+          <p className={styles.loaderText}>Conectando nodos digitales</p>
+          <div className={styles.progress} aria-hidden="true">
+            <span />
+          </div>
+        </div>
       </div>
     </div>
   )

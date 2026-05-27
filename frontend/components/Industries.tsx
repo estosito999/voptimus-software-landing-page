@@ -2,13 +2,13 @@ import styles from './Industries.module.css'
 
 const INDUSTRIES = [
   { icon: '◎', label: 'Educación',      color: 'cyan',   desc: 'Plataformas LMS, aulas virtuales y herramientas educativas.' },
-  { icon: '◉', label: 'Salud',          color: 'green',  desc: 'Sistemas clínicos, telemedicina y gestión hospitalaria.' },
+  { icon: '◉', label: 'Blockchian',          color: 'green',  desc: 'Sistemas Desentralizados, Tokenizacion y Autoridad Desentralizada' },
   { icon: '◈', label: 'Comercio',       color: 'violet', desc: 'E-commerce, inventarios y puntos de venta inteligentes.' },
   { icon: '◬', label: 'Restaurantes',   color: 'cyan',   desc: 'Menús digitales, reservas y gestión de pedidos en tiempo real.' },
   { icon: '◆', label: 'Finanzas',       color: 'green',  desc: 'Dashboards financieros, reportes y análisis predictivo.' },
-  { icon: '◇', label: 'Empresas',       color: 'violet', desc: 'Soluciones corporativas completas y escalables.' },
+  { icon: '◇', label: 'Optimizacion de Datos o Negocios',       color: 'violet', desc: 'Soluciones corporativas completas y escalables.' },
   { icon: '◎', label: 'Startups',       color: 'cyan',   desc: 'MVPs rápidos y arquitecturas preparadas para escalar.' },
-  { icon: '◉', label: 'Medio ambiente', color: 'green',  desc: 'Software para sostenibilidad, monitoreo ambiental y eficiencia energética.' },
+  { icon: '◉', label: 'SIAT Facturacion', color: 'green',  desc: 'Software para Facturacion, monitoreo ambiental y eficiencia energética.' },
 ]
 
 const COLOR_MAP: Record<string, string> = {

@@ -1,14 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { usePageTransition } from '@/hooks/usePageTransition'
+import TransitionButton from '@/components/TransitionButton'
 import { NAV_LINKS, ROUTES } from '@/lib/routes'
 import styles from './Navbar.module.css'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const { transition } = usePageTransition()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -16,42 +15,40 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleNav = (href: string) => {
-    setMenuOpen(false)
-    transition(href)
-  }
-
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`} role="banner">
       <nav className={styles.nav} aria-label="Navegación principal">
-        <button
-          onClick={() => handleNav(ROUTES.home)}
+        <TransitionButton
+          href={ROUTES.home}
+          onClick={() => setMenuOpen(false)}
           className={styles.logo}
           aria-label="Voptimus SOFTWARE - Inicio"
         >
           <span className={styles.logoV}>V</span>optimus{' '}
           <span className={styles.logoSoft}>SOFTWARE</span>
-        </button>
+        </TransitionButton>
 
         <ul className={`${styles.links} ${menuOpen ? styles.open : ''}`} role="list">
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
-              <button
-                onClick={() => handleNav(l.href)}
+              <TransitionButton
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
                 className={styles.link}
               >
                 {l.label}
-              </button>
+              </TransitionButton>
             </li>
           ))}
           <li>
-            <button
-              onClick={() => handleNav(ROUTES.contacto)}
+            <TransitionButton
+              href={ROUTES.contacto}
+              onClick={() => setMenuOpen(false)}
               className="btn-primary"
               style={{ padding: '10px 22px', fontSize: '0.88rem' }}
             >
               Contáctanos
-            </button>
+            </TransitionButton>
           </li>
         </ul>
 
