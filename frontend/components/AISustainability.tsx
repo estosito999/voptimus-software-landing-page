@@ -143,26 +143,26 @@ export default function AISustainability() {
 
         {/* Right: Content */}
         <div className={styles.content}>
-          <span className="section-label">Oportunidades + Afiliación</span>
+          <span className="section-label">Equipo de desarrollo</span>
           <h2 id="ai-title" className="section-title">
-            Crece con Voptimus y participa en{' '}
+            Construye con Voptimus{' '}
             <span>proyectos inteligentes</span>
           </h2>
           <p className={styles.text}>
             Únete a un equipo que desarrolla software, automatización e inteligencia
-            artificial para empresas. Si eres anunciador, promotor o afiliado, también
-            puedes generar ingresos con comisiones del 5% al 15% por cada cliente o
-            venta concretada.
+            artificial para empresas. Buscamos personas con criterio técnico, ganas
+            de aprender y compromiso para crear soluciones web, sistemas empresariales
+            y automatizaciones útiles.
           </p>
 
           <div className={styles.features}>
             {[
-              { label: 'Oportunidades para talento técnico y comercial', color: 'var(--green)' },
-              { label: 'Comisiones del 5% al 15% por resultados', color: 'var(--cyan)' },
               { label: 'Participación en proyectos de software e IA', color: 'var(--violet)' },
-              { label: 'Crecimiento profesional con acompañamiento', color: 'var(--green)' },
-              { label: 'Modelo flexible para promotores y afiliados', color: 'var(--cyan)' },
-              { label: 'Ingresos por clientes y ventas generadas', color: 'var(--violet)' },
+              { label: 'Desarrollo web, sistemas y automatización', color: 'var(--cyan)' },
+              { label: 'Aprendizaje con acompañamiento técnico', color: 'var(--green)' },
+              { label: 'Colaboración en productos reales para empresas', color: 'var(--violet)' },
+              { label: 'Buenas prácticas de arquitectura y entrega', color: 'var(--cyan)' },
+              { label: 'Crecimiento profesional dentro del equipo', color: 'var(--green)' },
             ].map((f) => (
               <div key={f.label} className={styles.feature}>
                 <div className={styles.featureDot} style={{ background: f.color }} />
@@ -172,11 +172,11 @@ export default function AISustainability() {
           </div>
 
           <div className={styles.actions}>
-            <TransitionButton href={ROUTES.contacto} className="btn-primary">
-              Quiero unirme al equipo
+            <TransitionButton href={`${ROUTES.equipo}#formulario-equipo`} className="btn-primary">
+              Unirme al equipo de desarrollo
             </TransitionButton>
-            <TransitionButton href={ROUTES.contacto} className="btn-secondary">
-              Ser promotor o afiliado
+            <TransitionButton href={ROUTES.soluciones} className="btn-secondary">
+              Ver programa de promotores
             </TransitionButton>
           </div>
         </div>

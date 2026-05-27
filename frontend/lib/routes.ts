@@ -2,6 +2,7 @@
 
 export const ROUTES = {
   home:        '/',
+  testimonios: '/testimonios',
   servicios:   '/servicios',
   soluciones:  '/afiliaciones',
   equipo:       '/equipo',
@@ -15,6 +16,7 @@ export const ROUTES = {
 export const NAV_LINKS = [
   { href: ROUTES.home,       label: 'Inicio' },
   { href: ROUTES.servicios,  label: 'Servicios' },
+  { href: ROUTES.testimonios, label: 'Testimonios' },
   { href: ROUTES.soluciones, label: 'Afiliaciones' },
   { href: ROUTES.equipo,     label: 'Equipo' },
   { href: ROUTES.nosotros,   label: 'Nosotros' },

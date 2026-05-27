@@ -6,6 +6,7 @@ import Industries from '@/components/Industries'
 import AISustainability from '@/components/AISustainability'
 import Process from '@/components/Process'
 import Portfolio from '@/components/Portfolio'
+import Testimonials from '@/components/Testimonials'
 import Technologies from '@/components/Technologies'
 import ContactForm from '@/components/ContactForm'
 import Footer from '@/components/Footer'
@@ -22,6 +23,7 @@ export default function Home() {
         <AISustainability />
         <Process />
         <Portfolio />
+        <Testimonials />
         <Technologies />
         <ContactForm />
       </main>

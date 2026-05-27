@@ -10,6 +10,7 @@ let resendClient: Resend | null = null
 type ContactPayload = {
   name: string
   email: string
+  formType?: string
   company: string
   budget: string
   message: string
@@ -53,6 +54,7 @@ function parsePayload(body: unknown): ContactPayload {
   return {
     name: getString(body.name, 120),
     email: getString(body.email, 180).toLowerCase(),
+    formType: getString(body.formType, 80),
     company: getString(body.company, 180),
     budget: getString(body.budget, 80),
     message: getString(body.message, 3000),
@@ -78,6 +80,7 @@ function validatePayload(payload: ContactPayload) {
 
 function buildEmailHtml(payload: ContactPayload) {
   const fields = [
+    ...(payload.formType ? [['Tipo de formulario', payload.formType]] : []),
     ['Nombre', payload.name],
     ['Correo', payload.email],
     ['Proyecto / necesidad', payload.company || 'No especificado'],
@@ -113,6 +116,7 @@ function buildEmailText(payload: ContactPayload) {
   return [
     'Nueva solicitud desde Voptimus SOFTWARE',
     '',
+    ...(payload.formType ? [`Tipo de formulario: ${payload.formType}`] : []),
     `Nombre: ${payload.name}`,
     `Correo: ${payload.email}`,
     `Proyecto / necesidad: ${payload.company || 'No especificado'}`,
@@ -141,7 +145,7 @@ export async function POST(request: Request) {
       from: CONTACT_FROM_EMAIL,
       to: CONTACT_TO_EMAIL,
       replyTo: payload.email,
-      subject: `Nueva solicitud de ${payload.name}`,
+      subject: `${payload.formType ? `${payload.formType}: ` : ''}Nueva solicitud de ${payload.name}`,
       html: buildEmailHtml(payload),
       text: buildEmailText(payload),
     })

@@ -1,7 +1,6 @@
-'use client'
-
 import Navbar from '@/components/Navbar'
-import AISustainability from '@/components/AISustainability'
+import PromoterAffiliates from '@/components/PromoterAffiliates'
+import OpportunityContactForm from '@/components/OpportunityContactForm'
 import Footer from '@/components/Footer'
 
 export default function AffiliationsPage() {
@@ -9,7 +8,8 @@ export default function AffiliationsPage() {
     <>
       <Navbar />
       <main>
-        <AISustainability />
+        <PromoterAffiliates />
+        <OpportunityContactForm type="promoter" />
       </main>
       <Footer />
     </>

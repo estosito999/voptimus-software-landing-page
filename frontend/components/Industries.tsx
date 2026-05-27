@@ -2,13 +2,13 @@ import styles from './Industries.module.css'
 
 const INDUSTRIES = [
   { icon: '◎', label: 'Educación',      color: 'cyan',   desc: 'Plataformas LMS, aulas virtuales y herramientas educativas.' },
-  { icon: '◉', label: 'Blockchian',          color: 'green',  desc: 'Sistemas Desentralizados, Tokenizacion y Autoridad Desentralizada' },
+  { icon: '◉', label: 'Blockchain',     color: 'green',  desc: 'Sistemas descentralizados, tokenización y autoridad descentralizada.' },
   { icon: '◈', label: 'Comercio',       color: 'violet', desc: 'E-commerce, inventarios y puntos de venta inteligentes.' },
   { icon: '◬', label: 'Restaurantes',   color: 'cyan',   desc: 'Menús digitales, reservas y gestión de pedidos en tiempo real.' },
   { icon: '◆', label: 'Finanzas',       color: 'green',  desc: 'Dashboards financieros, reportes y análisis predictivo.' },
-  { icon: '◇', label: 'Optimizacion de Datos o Negocios',       color: 'violet', desc: 'Soluciones corporativas completas y escalables.' },
+  { icon: '◇', label: 'Optimización de datos y negocios', color: 'violet', desc: 'Soluciones corporativas completas, medibles y escalables.' },
   { icon: '◎', label: 'Startups',       color: 'cyan',   desc: 'MVPs rápidos y arquitecturas preparadas para escalar.' },
-  { icon: '◉', label: 'SIAT Facturacion', color: 'green',  desc: 'Software para Facturacion, monitoreo ambiental y eficiencia energética.' },
+  { icon: '◉', label: 'Facturación SIAT', color: 'green', desc: 'Software para facturación, gestión tributaria y automatización de procesos.' },
 ]
 
 const COLOR_MAP: Record<string, string> = {
