@@ -1,12 +1,13 @@
 .section {
   min-height: 100vh;
-  padding: 80px 20px;
+  padding: 112px 20px 80px;
   background: linear-gradient(135deg, var(--bg-deep) 0%, rgba(34, 197, 94, 0.03) 100%);
 }
 
 .inner {
   max-width: 1000px;
   margin: 0 auto;
+  min-width: 0;
 }
 
 .header {
@@ -16,7 +17,7 @@
 
 .content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 60px;
   align-items: start;
 }
@@ -53,8 +54,9 @@
   background: rgba(6, 182, 212, 0.05);
   border: 1px solid rgba(6, 182, 212, 0.2);
   border-radius: 16px;
-  padding: 40px;
+  padding: clamp(24px, 5vw, 40px);
   text-align: center;
+  min-width: 0;
 }
 
 .cta h2 {
@@ -97,7 +99,7 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: 60px 20px;
+    padding: 96px 18px 60px;
   }
 
   .content {
@@ -107,5 +109,11 @@
 
   .header {
     margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 380px) {
+  .section {
+    padding-inline: 16px;
   }
 }

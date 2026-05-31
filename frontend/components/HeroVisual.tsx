@@ -8,12 +8,16 @@ const NODES = [
   { cx: 200, cy: 80  },
   { cx: 340, cy: 60  },
   { cx: 440, cy: 130 },
+  { cx: 520, cy: 95  },
+  { cx: 70,  cy: 125 },
   { cx: 120, cy: 180 },
   { cx: 260, cy: 200 },
   { cx: 390, cy: 240 },
+  { cx: 515, cy: 245 },
   { cx: 160, cy: 310 },
   { cx: 310, cy: 340 },
   { cx: 460, cy: 300 },
+  { cx: 60,  cy: 330 },
   { cx: 80,  cy: 400 },
   { cx: 220, cy: 430 },
   { cx: 380, cy: 420 },
@@ -21,12 +25,15 @@ const NODES = [
   { cx: 140, cy: 500 },
   { cx: 300, cy: 510 },
   { cx: 430, cy: 490 },
+  { cx: 520, cy: 525 },
+  { cx: 245, cy: 110 },
 ]
 
 const EDGES = [
-  [0,1],[1,2],[0,4],[1,4],[2,5],[3,4],[3,6],[4,5],[4,7],[5,8],
-  [6,7],[7,8],[6,9],[7,10],[8,12],[9,10],[10,11],[11,12],[10,13],
-  [11,14],[12,15],[13,14],[14,15],
+  [0,1],[1,2],[2,3],[0,21],[1,21],[2,7],[3,8],[4,5],[4,0],[5,6],
+  [5,9],[6,7],[6,10],[7,8],[7,11],[8,11],[9,10],[9,12],[10,11],[10,14],
+  [11,16],[12,13],[13,14],[14,15],[15,16],[14,17],[15,18],[16,19],[17,18],
+  [18,19],[19,20],[16,20],
 ]
 
 /* Floating particles */
@@ -45,9 +52,13 @@ function genParticles(count: number) {
 const CUBES = [
   { x: 5,  y: 10, size: 70, delay: 0,   dur: 12, color: 'var(--cyan)'   },
   { x: 70, y: 5,  size: 50, delay: 2,   dur: 14, color: 'var(--violet)' },
+  { x: 36, y: 2,  size: 34, delay: 1.4, dur: 13, color: 'var(--green)'  },
   { x: 55, y: 60, size: 60, delay: 1,   dur: 10, color: 'var(--green)'  },
   { x: 15, y: 65, size: 40, delay: 3,   dur: 16, color: 'var(--cyan)'   },
   { x: 82, y: 45, size: 45, delay: 0.5, dur: 11, color: 'var(--violet)' },
+  { x: 2,  y: 42, size: 44, delay: 2.6, dur: 15, color: 'var(--cyan)'   },
+  { x: 76, y: 77, size: 34, delay: 3.4, dur: 12, color: 'var(--green)'  },
+  { x: 42, y: 78, size: 38, delay: 1.8, dur: 17, color: 'var(--violet)' },
 ]
 
 function Cube({ x, y, size, delay, dur, color }: (typeof CUBES)[0]) {

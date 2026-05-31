@@ -24,6 +24,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 32px;
+  min-width: 0;
 }
 
 .logo {
@@ -38,6 +39,7 @@
   border: none;
   padding: 0;
   cursor: pointer;
+  min-width: 0;
 }
 
 .logo:hover {
@@ -61,6 +63,7 @@
   align-items: center;
   gap: 4px;
   list-style: none;
+  min-width: 0;
 }
 
 .link {
@@ -144,6 +147,8 @@
     top: 0;
     right: 0;
     height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
     width: min(320px, 85vw);
     background: rgba(2, 8, 23, 0.97);
     backdrop-filter: blur(24px);
@@ -153,6 +158,8 @@
     align-items: flex-start;
     padding: 100px 28px 40px;
     gap: 6px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     transform: translateX(110%);
     transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
@@ -165,5 +172,38 @@
     font-size: 1.1rem;
     padding: 10px 16px;
     width: 100%;
+  }
+
+  .links li,
+  .links :global(.btn-primary) {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .header {
+    padding: 16px 0;
+  }
+
+  .header.scrolled {
+    padding: 10px 0;
+  }
+
+  .nav {
+    padding: 0 18px;
+    gap: 18px;
+  }
+
+  .logo {
+    font-size: 1.05rem;
+  }
+
+  .logoV {
+    font-size: 1.32rem;
+  }
+
+  .links {
+    width: 100%;
+    padding: 92px 22px 32px;
   }
 }

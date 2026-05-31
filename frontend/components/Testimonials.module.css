@@ -21,6 +21,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+  min-width: 0;
 }
 
 .header {
@@ -30,7 +31,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -46,6 +47,7 @@
     transform 0.25s ease,
     border-color 0.25s ease,
     box-shadow 0.25s ease;
+  min-width: 0;
 }
 
 .card:hover {

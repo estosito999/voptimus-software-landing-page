@@ -28,13 +28,15 @@
   margin: 0 auto;
   padding: 0 24px;
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
+  grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1.08fr);
   gap: 48px;
   align-items: center;
+  min-width: 0;
 }
 
 .content {
   animation: fadeInUp 0.8s ease both;
+  min-width: 0;
 }
 
 .title {
@@ -76,6 +78,7 @@
 .opportunities {
   display: grid;
   gap: 18px;
+  min-width: 0;
 }
 
 .opportunity {
@@ -94,6 +97,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
   animation: fadeInUp 0.8s ease both;
   animation-delay: 0.12s;
+  min-width: 0;
 }
 
 .opportunity:nth-child(2) {
@@ -196,6 +200,7 @@
   font-size: clamp(1.55rem, 3vw, 2.35rem);
   font-weight: 800;
   line-height: 1.05;
+  overflow-wrap: break-word;
 }
 
 .highlightLabel {
@@ -245,8 +250,9 @@
   margin: 64px auto 0;
   padding: 0 24px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+  min-width: 0;
 }
 
 .step {
@@ -254,6 +260,7 @@
   padding: 28px;
   border-radius: 8px;
   animation: fadeInUp 0.8s ease both;
+  min-width: 0;
 }
 
 .step:nth-child(2) {
@@ -330,6 +337,21 @@
   }
 
   .opportunityHeader {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 380px) {
+  .inner,
+  .steps {
+    padding: 0 16px;
+  }
+
+  .opportunity {
+    padding: 18px;
+  }
+
+  .benefit {
     align-items: flex-start;
   }
 }

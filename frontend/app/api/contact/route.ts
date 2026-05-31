@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? 'duicornista@gmail.com'
+const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? 'voptimusoftware@gmail.com'
 const CONTACT_FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL ?? 'Voptimus SOFTWARE <onboarding@resend.dev>'
 

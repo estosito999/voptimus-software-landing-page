@@ -28,8 +28,8 @@ export default function Footer() {
           <p className={styles.tagline}>
             Software inteligente para empresas que quieren crecer.
           </p>
-          <a href="mailto:duicornista@gmail.com" className={styles.email}>
-            duicornista@gmail.com
+          <a href="mailto:voptimusoftware@gmail.com" className={styles.email}>
+            voptimusoftware@gmail.com
           </a>
 
           {/* Social links */}

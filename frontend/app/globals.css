@@ -20,8 +20,6 @@
   --radius-sm:    6px;
   --radius-md:    12px;
   --radius-lg:    20px;
-  --font-heading: var(--font-heading, 'Space Grotesk', sans-serif);
-  --font-body:    var(--font-body, 'Inter', sans-serif);
 }
 
 /* ─── Reset ─────────────────────────────────────────────────────── */
@@ -34,6 +32,9 @@
 html {
   scroll-behavior: smooth;
   background-color: var(--bg-deep);
+  max-width: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -43,11 +44,17 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  max-width: 100%;
+}
+
+main {
+  overflow-x: clip;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading), 'Space Grotesk', sans-serif;
   line-height: 1.2;
+  overflow-wrap: break-word;
 }
 
 a {
@@ -73,6 +80,11 @@ button {
 
 input, textarea, select {
   font-family: inherit;
+  min-width: 0;
+}
+
+p, li, span {
+  overflow-wrap: break-word;
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────────────── */
@@ -184,6 +196,7 @@ input, textarea, select {
 /* ─── Utilities ─────────────────────────────────────────────────── */
 .section-label {
   display: inline-block;
+  max-width: 100%;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -202,6 +215,7 @@ input, textarea, select {
   color: var(--white);
   margin-bottom: 16px;
   font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+  text-wrap: balance;
 }
 
 .section-title span {
@@ -214,6 +228,7 @@ input, textarea, select {
 .section-subtitle {
   font-size: 1.05rem;
   color: var(--text-dim);
+  width: min(100%, 560px);
   max-width: 560px;
   line-height: 1.7;
 }
@@ -229,12 +244,18 @@ input, textarea, select {
 .btn-primary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 14px 32px;
+  min-height: 44px;
+  max-width: 100%;
   background: linear-gradient(135deg, var(--cyan), #0099cc);
   color: #020817;
   font-weight: 700;
   font-size: 0.95rem;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
   border-radius: 100px;
   border: none;
   cursor: pointer;
@@ -252,12 +273,18 @@ input, textarea, select {
 .btn-secondary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 14px 32px;
+  min-height: 44px;
+  max-width: 100%;
   background: transparent;
   color: var(--white);
   font-weight: 600;
   font-size: 0.95rem;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
   border-radius: 100px;
   border: 1px solid var(--border);
   cursor: pointer;
@@ -271,4 +298,39 @@ input, textarea, select {
   background: var(--cyan-dim);
   border-color: var(--cyan);
   transform: translateY(-2px);
+}
+
+@media (max-width: 560px) {
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    padding: 5px 12px;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: clamp(1.7rem, 8.5vw, 2.25rem);
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    padding: 13px 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .section-title {
+    font-size: clamp(1.55rem, 8vw, 1.95rem);
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding-inline: 16px;
+  }
 }

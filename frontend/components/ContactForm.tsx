@@ -3,10 +3,11 @@
 import { useState } from 'react'
 import styles from './ContactForm.module.css'
 
-const BUDGETS = [
-  '$100 - $300 USD',
-  '$300 - $500 USD',
-  '$500 - $700 USD',
+const STAGES = [
+  'Solo tengo la idea',
+  'Ya tengo algo y quiero mejorarlo',
+  'Necesito hacerlo desde cero',
+  'Necesito mantenimiento o soporte',
 ]
 
 const INITIAL_FORM_STATE = {
@@ -84,7 +85,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <p className={styles.contactLabel}>Correo</p>
-                <p className={styles.contactValue}>duicornista@gmail.com</p>
+                <p className={styles.contactValue}>voptimusoftware@gmail.com</p>
               </div>
             </div>
 
@@ -193,7 +194,7 @@ export default function ContactForm() {
               </div>
 
               <div className={styles.field}>
-                <label htmlFor="budget" className={styles.label}>Presupuesto aproximado</label>
+                <label htmlFor="budget" className={styles.label}>Etapa del proyecto</label>
                 <select
                   id="budget"
                   name="budget"
@@ -201,9 +202,9 @@ export default function ContactForm() {
                   onChange={handleChange}
                   className={styles.select}
                 >
-                  <option value="">Selecciona un rango</option>
-                  {BUDGETS.map((b) => (
-                    <option key={b} value={b}>{b}</option>
+                  <option value="">Selecciona una Etapa</option>
+                  {STAGES.map((s) => (
+                    <option key={s} value={s}>{s}</option>
                   ))}
                 </select>
               </div>
